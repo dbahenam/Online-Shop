@@ -1,0 +1,25 @@
+.admin_nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.admin_nav h1 {
+  margin: 2rem 0;
+}
+.admin_nav ul {
+  list-style: none;
+}
+
+.admin_nav a {
+  background-color: var(--button-bg-color);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+
+.admin_nav a:hover {
+  cursor: pointer;
+  background-color: var(--button-hover-color);
+}

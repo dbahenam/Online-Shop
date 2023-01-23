@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../includes/head") %>
+<link rel="stylesheet" href="/styles/forms.css">
+<body>
+    <%- include("../includes/header") %>
+    <main>
+        <form class="app__form" action="/admin/add-product?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="productname">Product Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="description">Price</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+            <div>
+                <label for="summary">Summary</label>
+                <input type="text" id="summary" name="summary" required>
+            </div>
+            <div>
+                <label for="description">Product Description</label>
+                <textarea id="description" name="description" rows="10" required></textarea>
+            </div>
+                <label for="image">Product Image</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            <button class="app__btn">Submit</button>
+        </form>
+    </main>
+    <footer></footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../includes/head") %>
+  <link rel="stylesheet" href="styles/forms.css" />
+
+  <body>
+    <header><%- include("../includes/header") %></header>
+    <main>
+      <form class="app__form" action="/login" method="POST">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
+        <h1>Login</h1>
+        <% if(inputData.hasError) {%>
+        <p class="app__error"><%= inputData.message %></p>
+        <% } %>
+        <div class="form-control">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="<%= inputData.email %>"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button class="app__btn">Confirm</button>
+      </form>
+    </main>
+  </body>
+</html>

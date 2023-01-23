@@ -1,0 +1,55 @@
+.app__btn {
+  margin-top: 1rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--button-bg-color);
+  color: white;
+  border-color: transparent;
+  border-radius: 0.5rem;
+  font-weight: 700;
+}
+
+.app__btn-alt {
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  border: transparent;
+  background-color: transparent;
+}
+.app__btn:hover {
+  background-color: var(--button-hover-color);
+  cursor: pointer;
+}
+
+.app__error {
+  background-color: var(--red-color);
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.25rem;
+  margin: 0;
+}
+
+.app__error-section {
+  width: 25rem;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+}
+.app__error-section p {
+  margin: 1rem;
+  font-size: 1.25rem;
+}
+.app__error-section a {
+  text-decoration: none;
+}
+
+.app-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+#app__logo {
+  font-size: 1.2rem;
+}

@@ -1,0 +1,35 @@
+html {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(114, 152, 175, 0.502),
+    rgba(48, 123, 136, 0.502)
+  );
+  font-family: 'Assistant', sans-serif;
+  --font-base: 'DM Sans', sans-serif;
+
+  --primary-color: #edf2f8;
+  --secondary-color: rgba(48, 123, 136, 0.3);
+  --black-color: #030303;
+  --lightGray-color: #e4e4e4;
+  --gray-color: rgba(114, 152, 175, 0.502);
+  --brown-color: #46364a;
+  --white-color: #ffffff;
+  --red-color: rgb(161, 4, 4);
+  --button-bg-color: rgba(25, 150, 170, 0.822);
+  --button-hover-color: rgb(4, 41, 77);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+main {
+  margin-top: 6rem;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
