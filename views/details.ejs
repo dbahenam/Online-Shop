@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("includes/head") %>
+  <script src="/scripts/cartBadge.js" defer></script>
+  <body>
+    <%- include('includes/header') %>
+    <main>
+      <% console.log(product) %>
+      <div class="app__product-details">
+        <img src="<%= product.imageUrl %>" alt="<%= product.name %>" />
+        <h2><%= product.name %></h2>
+        <button
+          id="addToCart"
+          data-productid="<%=product.id%>"
+          data-csrf="<%= locals.csrfToken %>"
+        >
+          Add to cart
+        </button>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,25 +1,28 @@
 <ul id="app__nav-items">
-      
-    <% if(!locals.isAuth){ %>
-    <li><a class="app-text" href="/login">Login</a></li>
-    <li><a class="app-text" href="/signup">Signup</a></li>
-    <% } %> 
+  <% if(!locals.isAuth){ %>
+  <li>
+    <a class="app-text" href="/cart/cart">Cart</a
+    ><span id="cartTotalItems" class="app__badge"
+      ><%=locals.cart.totalItems %></span
+    >
+  </li>
+  <li><a class="app-text" href="/signup">Signup</a></li>
+  <li><a class="app-text" href="/login">Login</a></li>
+  <% } %>
 
-    <% if(!locals.isAdmin){ %> 
+  <!-- <% if(!locals.isAdmin){ %> 
         <li><a class="app-text" href="/cart">Cart</a></li>
-    <% } %>
-    
-    <% if (locals.isAdmin) { %> 
-      <li><a class="app-text" href="/admin/products">Manage Products</a></li>
-      <li><a class="app-text" href="/admin/orders">Manage Orders</a></li>
-    <% } %>
-    <% if (locals.isAuth){ %>
-      <li>
-        <form action="/logout" method="POST">
-          <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
-          <button class="app__btn-alt">Logout</button>
-        </form>
-      </li>
-    <% } %>
+    <% } %> -->
 
-  </ul>
+  <% if (locals.isAdmin) { %>
+  <li><a class="app-text" href="/admin/products">Manage Products</a></li>
+  <li><a class="app-text" href="/admin/orders">Manage Orders</a></li>
+  <% } %> <% if (locals.isAuth){ %>
+  <li>
+    <form action="/logout" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
+      <button class="app__btn-alt">Logout</button>
+    </form>
+  </li>
+  <% } %>
+</ul>

@@ -1,6 +1,7 @@
 function handleErrors(error, req, res, next) {
+  console.log('in error mw: ', error.code);
   console.log(error);
-  if (error.status === 404) {
+  if (error.code === 404) {
     return res.render('errors/404');
   }
   return res.render('errors/500');

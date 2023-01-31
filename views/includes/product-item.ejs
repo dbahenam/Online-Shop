@@ -1,6 +1,7 @@
 <article class="product-item">
   <h2><%= product.name %></h2>
   <img src="<%= product.imageUrl %>" alt="<%= product.name %>" />
-  <p><%= product.price %></p>
-  <p><%= product.description %></p>
+  <p class="app__price">$<%= product.price %></p>
+  <a class="app__btn" href="/products/<%= product.id %>">View Details</a>
+  <!-- <p><%= product.description %></p> -->
 </article>

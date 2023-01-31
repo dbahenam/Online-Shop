@@ -1,5 +1,4 @@
 const express = require('express');
-const productController = require('../controllers/prod.controller');
 
 const router = express.Router();
 
