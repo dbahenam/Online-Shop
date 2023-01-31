@@ -2,3 +2,4 @@ node_modules/
 package-lock.json
 product_data/
 .DS_Store
+font-awesome/
