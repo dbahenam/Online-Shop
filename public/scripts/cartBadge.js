@@ -3,7 +3,6 @@ const cartTotalItems = document.getElementById('cartTotalItems');
 
 async function addToCart(event) {
   const productID = addToCartButton.dataset.productid;
-  console.log('productID: ', productID);
   const csrfToken = addToCartButton.dataset.csrf;
   let response;
 

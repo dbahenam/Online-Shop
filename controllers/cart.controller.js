@@ -4,7 +4,6 @@ async function addCartItem(req, res) {
   const product = await Product.getByID(req.body.productID);
   const cart = res.locals.cart;
   cart.addItem(product);
-  console.log(cart);
   req.session.cart = cart;
   res.status(201).json({
     message: 'Cart updated',
@@ -12,9 +11,29 @@ async function addCartItem(req, res) {
   });
 }
 
+async function patchCartItems(req, res) {
+  const product = await Product.getByID(req.body.productID);
+  const cart = res.locals.cart;
+  if (req.body.action === 'add') {
+    cart.addItem(product);
+  } else {
+    cart.removeItem(product);
+  }
+  req.session.cart = cart;
+  res.status(201).json({
+    message: 'Cart Updated',
+    totalItems: cart.totalItems,
+    totalPrice: cart.totalPrice,
+  });
+}
+
 function getCart(req, res) {
-  const numItems = res.locals.cart.totalItems;
-  const items = res.locals.cart.items;
+  const cart = res.locals.cart;
+  const cartInfo = {
+    totalItems: cart.totalItems,
+    totalPrice: cart.totalPrice,
+  };
+  const items = cart.items;
   let products = [];
   for (let i = 0; i < items.length; i++) {
     products[i] = items[i].product;
@@ -25,11 +44,12 @@ function getCart(req, res) {
   res.render('customer/cart', {
     products: products,
     items: items,
-    numItems: numItems,
+    cartInfo: cartInfo,
   });
 }
 
 module.exports = {
   addCartItem: addCartItem,
+  patchCartItems: patchCartItems,
   getCart: getCart,
 };

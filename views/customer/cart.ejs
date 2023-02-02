@@ -8,7 +8,7 @@
     crossorigin="anonymous"
   />
   <link rel="stylesheet" href="/styles/cart.css" />
-
+  <script src="/scripts/cartControl.js" defer></script>
   <body>
     <%-include("../includes/header") %>
     <main>
@@ -35,8 +35,8 @@
                       >
                         <div>
                           <p class="mb-1">Shopping cart</p>
-                          <p class="mb-0">
-                            You have <%=numItems%> items in your cart
+                          <p class="cart-total-items mb-0">
+                            You have <%=cartInfo.totalItems%> items in your cart
                           </p>
                         </div>
                         <div>
@@ -71,26 +71,40 @@
                             </div>
                             <div class="item-management">
                               <button
+                                id="remove-item"
+                                type="button"
+                                class="btn btn-secondary btn-sm mb-2"
+                                data-mdb-toggle="tooltip"
+                                title="Remove item"
+                                data-productid="<%=products[i].id%>"
+                                data-csrf="<%=locals.csrfToken%>"
+                                data-action="remove"
+                              >
+                                <i class="fa-solid fa-minus"></i>
+                              </button>
+                              <h5>
+                                <b class="cart-total-items"
+                                  ><%= items[i].quantity%></b
+                                >
+                              </h5>
+                              <button
+                                id="add-item"
                                 type="button"
                                 class="btn btn-primary btn-sm me-1 mb-2"
                                 data-mdb-toggle="tooltip"
-                                title="Remove item"
-                              >
-                                <i class="fas fa-trash-alt"></i>
-                              </button>
-                              <h5><b><%= items[i].quantity%></b></h5>
-                              <button
-                                type="button"
-                                class="btn btn-danger btn-sm mb-2"
-                                data-mdb-toggle="tooltip"
                                 title="Move to the wish list"
+                                data-productid="<%=products[i].id%>"
+                                data-csrf="<%=locals.csrfToken%>"
+                                data-action="add"
                               >
-                                <i class="fas fa-heart"></i>
+                                <i class="fa-solid fa-plus"></i>
                               </button>
                               <div>
-                                <h5 class="mb-0">$<%=items[i].totalPrice%></h5>
+                                <h5 class="cart-total-price mb-0">
+                                  $<%=items[i].totalPrice%>
+                                </h5>
                               </div>
-                              <a href="#!" style="color: #cecece"
+                              <a href="#!" style="color: #ff0000"
                                 ><i class="fas fa-trash-alt"></i
                               ></a>
                             </div>
@@ -199,7 +213,9 @@
 
                           <div class="d-flex justify-content-between">
                             <p class="mb-2">Subtotal</p>
-                            <p class="mb-2"><%= items.totalPrice%></p>
+                            <p class="cart-total-price mb-2">
+                              <%= items.totalPrice%>
+                            </p>
                           </div>
 
                           <div class="d-flex justify-content-between">
@@ -209,7 +225,9 @@
 
                           <div class="d-flex justify-content-between mb-4">
                             <p class="mb-2">Total(Incl. taxes)</p>
-                            <p class="mb-2">$4818.00</p>
+                            <p class="cart-total-price mb-2">
+                              $<%=cartInfo.totalPrice%>
+                            </p>
                           </div>
 
                           <button
@@ -217,7 +235,9 @@
                             class="btn btn-warning btn-block btn-lg"
                             class="d-flex justify-content-between"
                           >
-                            <span>$4818.00</span>
+                            <span class="cart-total-price"
+                              >$<%=cartInfo.totalPrice%></span
+                            >
                             <span
                               >Checkout
                               <i class="fas fa-long-arrow-alt-right ms-2"></i
