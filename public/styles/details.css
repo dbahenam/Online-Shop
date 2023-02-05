@@ -1,0 +1,27 @@
+.container {
+  margin-top: 5rem;
+}
+
+.newarrival {
+  background: green;
+  width: 3.5rem;
+  border-radius: 4px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 0.25rem 0;
+  color: rgb(255, 208, 0);
+}
+
+input {
+  padding: 0.25rem;
+}
+
+.btn-warning {
+  margin: 0.5rem 0;
+}

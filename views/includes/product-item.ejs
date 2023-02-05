@@ -1,7 +1,23 @@
-<article class="product-item">
-  <h2><%= product.name %></h2>
-  <img src="<%= product.imageUrl %>" alt="<%= product.name %>" />
-  <p class="app__price">$<%= product.price %></p>
-  <a class="app__btn" href="/products/<%= product.id %>">View Details</a>
-  <!-- <p><%= product.description %></p> -->
-</article>
+<div class="m-4 row row-cols-1 row-cols-md-4 g-4">
+  <div class="col">
+    <div class="card h-100 p-3">
+      <h4 class="card-title text-center"><%= product.name %></h4>
+      <img
+        src="<%= product.imageUrl %>"
+        class="card-img-top"
+        alt="<%= product.name %>"
+      />
+      <div class="px-0 card-body">
+        <b>$<%= product.price %></b>
+        <p class="card-text"><%= product.description %></p>
+        <a
+          style="color: white"
+          class="btn btn-info"
+          role="button"
+          href="/products/<%= product.id %>"
+          >View Details</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

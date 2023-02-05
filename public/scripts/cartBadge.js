@@ -1,9 +1,12 @@
 const addToCartButton = document.getElementById('addToCart');
 const cartTotalItems = document.getElementById('cartTotalItems');
+const quantityValue = document.getElementById('item-quantity');
 
 async function addToCart(event) {
   const productID = addToCartButton.dataset.productid;
   const csrfToken = addToCartButton.dataset.csrf;
+  const quantity = +quantityValue.value;
+  console.log(quantity);
   let response;
 
   try {
@@ -11,6 +14,7 @@ async function addToCart(event) {
       method: 'POST',
       body: JSON.stringify({
         productID: productID,
+        quantity: quantity,
         _csrf: csrfToken,
       }),
       headers: {
@@ -25,6 +29,7 @@ async function addToCart(event) {
     alert('Error');
     return;
   }
+  quantityValue.value = 1;
   const responseData = await response.json();
   cartTotalItems.innerHTML = responseData.totalItems;
   console.log(responseData);

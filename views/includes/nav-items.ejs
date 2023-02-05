@@ -1,13 +1,13 @@
-<ul id="app__nav-items">
+<ul class="nav-links">
   <% if(!locals.isAuth){ %>
-  <li>
-    <a class="app-text" href="/cart/cart">Cart</a
-    ><span id="cartTotalItems" class="app__badge"
+  <li class="navbar-brand">
+    <a class="app-text" href="/cart/cart">Cart</a>
+    <span id="cartTotalItems" class="badge bg-info"
       ><%=locals.cart.totalItems %></span
     >
   </li>
-  <li><a class="app-text" href="/signup">Signup</a></li>
-  <li><a class="app-text" href="/login">Login</a></li>
+  <li class="navbar-brand"><a class="app-text" href="/signup">Signup</a></li>
+  <li class="navbar-brand"><a class="app-text" href="/login">Login</a></li>
   <% } %>
 
   <!-- <% if(!locals.isAdmin){ %> 

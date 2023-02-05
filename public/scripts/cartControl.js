@@ -15,7 +15,6 @@ async function patchCart(addItemButton) {
   const productID = actionButton.dataset.productid;
   const csrfToken = actionButton.dataset.csrf;
   const action = actionButton.dataset.action;
-  console.log('action: ', action);
   let response;
   try {
     response = await fetch('/cart/items', {

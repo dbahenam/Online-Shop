@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include("includes/head") %>
+  <link rel="stylesheet" href="/styles/details.css" />
   <script src="/scripts/cartBadge.js" defer></script>
   <body>
-    <%- include('includes/header') %>
+    <header><%- include("includes/header") %></header>
     <main>
-      <div class="app__product-details">
-        <img src="<%= product.imageUrl %>" alt="<%= product.name %>" />
-        <h2><%= product.name %></h2>
-        <button
-          id="addToCart"
-          data-productid="<%=product.id%>"
-          data-csrf="<%= locals.csrfToken %>"
-        >
-          Add to cart
-        </button>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <img
+              src="<%=product.imageUrl%>"
+              alt="<%=product.name%>"
+              class="img-thumbnail"
+            />
+          </div>
+          <div class="col-md-5">
+            <p class="newarrival text-center">New</p>
+            <h2><%=product.name%></h2>
+            <p class="price">USD $<%=product.price%></p>
+            <p><b>Availability: </b>In stock</p>
+            <p><b>Description: </b><%=product.description%></p>
+            <p><b>Condition: </b>New</p>
+
+            <label><b>Quantity:</b></label>
+            <input id="item-quantity" type="number" value="1" />
+            <br />
+            <button
+              class="btn btn-warning"
+              role="button"
+              id="addToCart"
+              data-productid="<%=product.id%>"
+              data-csrf="<%= locals.csrfToken %>"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
       </div>
     </main>
   </body>

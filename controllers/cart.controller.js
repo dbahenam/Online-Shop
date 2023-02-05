@@ -2,8 +2,9 @@ const Product = require('../models/product.model');
 
 async function addCartItem(req, res) {
   const product = await Product.getByID(req.body.productID);
+  const quantity = req.body.quantity;
   const cart = res.locals.cart;
-  cart.addItem(product);
+  cart.addItem(product, quantity);
   req.session.cart = cart;
   res.status(201).json({
     message: 'Cart updated',

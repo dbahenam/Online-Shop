@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include("includes/head") %>
-  <link rel="stylesheet" href="/styles/forms.css">
-  <link rel="stylesheet" href="/styles/products.css">
-  <link rel="stylesheet" href="/styles/product-item.css">
   <body>
     <header><%- include("includes/header") %></header>
     <main>
       <section>
-        <ul class="product-grid">
-          <% for (const product of products) { %>
-            <li>
-              <%- include("includes/product-item", {product: product}) %>
-            </li>  
-          <% } %>
-        </ul>
+        <% for (const product of products) { %> <%-
+        include("includes/product-item", {product: product}) %> <% } %>
       </section>
     </main>
   </body>
