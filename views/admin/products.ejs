@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include("../includes/head") %>
-  <link rel="stylesheet" href="/styles/forms.css">
-  <link rel="stylesheet" href="/styles/products.css">
-  <link rel="stylesheet" href="/styles/product-item.css">
+  <link rel="stylesheet" href="/styles/forms.css" />
+
   <body>
     <header><%- include("../includes/header") %></header>
     <main>
       <section class="admin_nav">
-        <h1>Product Administration</h1>
-        <ul>
-          <li>
-            <a href='/admin/add-product'>Add New Item</a>
-          </li>
-        </ul>
+        <h1 class="text-center m-4">Product Administration</h1>
+
+        <div class="text-center">
+          <a class="text-dark btn btn-warning" href="/admin/add-product"
+            >Add New Item</a
+          >
+        </div>
       </section>
       <section>
-        <ul class="product-grid">
-          <% for (const product of products) { %>
-            <li>
-              <%- include("includes/product-item", {product: product}) %>
-            </li>  
-          <% } %>
-        </ul>
+        <div class="m-4 row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+            <% for (const product of products) { %> <%-
+            include("includes/product-item", {product: product}) %> <% } %>
+          </div>
+        </div>
       </section>
     </main>
-    
   </body>
 </html>

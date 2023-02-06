@@ -2,11 +2,10 @@ const addToCartButton = document.getElementById('addToCart');
 const cartTotalItems = document.getElementById('cartTotalItems');
 const quantityValue = document.getElementById('item-quantity');
 
-async function addToCart(event) {
+async function addToCart() {
   const productID = addToCartButton.dataset.productid;
   const csrfToken = addToCartButton.dataset.csrf;
   const quantity = +quantityValue.value;
-  console.log(quantity);
   let response;
 
   try {

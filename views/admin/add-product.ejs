@@ -1,33 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("../includes/head") %>
-<link rel="stylesheet" href="/styles/forms.css">
-<body>
+  <%- include("../includes/head") %>
+  <link rel="stylesheet" href="/styles/forms.css" />
+  <body>
     <%- include("../includes/header") %>
     <main>
-        <form class="app__form" action="/admin/add-product?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
-            <div>
-                <label for="productname">Product Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div>
-                <label for="description">Price</label>
-                <input type="number" id="price" name="price" required>
-            </div>
-            <div>
-                <label for="summary">Summary</label>
-                <input type="text" id="summary" name="summary" required>
-            </div>
-            <div>
-                <label for="description">Product Description</label>
-                <textarea id="description" name="description" rows="10" required></textarea>
-            </div>
-                <label for="image">Product Image</label>
-                <input type="file" id="image" name="image" accept="image/*" required>
-            </div>
-            <button class="app__btn">Submit</button>
-        </form>
+      <h1 class="text-center my-4">Add a New Item</h1>
+      <form
+        class="product-form my-0"
+        action="/admin/add-product?_csrf=<%= locals.csrfToken %>"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group my-2">
+          <input
+            class="form-control"
+            type="text"
+            id="name"
+            name="name"
+            required
+          />
+          <label for="productname"><b>Product Name</b></label>
+        </div>
+        <div class="form-group my-2">
+          <input
+            class="form-control"
+            type="number"
+            id="price"
+            name="price"
+            required
+          />
+          <label for="description"><b>Price</b></label>
+        </div>
+
+        <div class="form-group my-2">
+          <input
+            class="form-control"
+            type="text"
+            id="summary"
+            name="summary"
+            required
+          />
+          <label for="summary"><b>Summary</b></label>
+        </div>
+        <div class="form-group my-2">
+          <textarea
+            class="form-control"
+            id="description"
+            name="description"
+            rows="10"
+            required
+          ></textarea>
+          <label for="description"><b>Product Description</b></label>
+        </div>
+        <div class="form-group my-3">
+          <input
+            class="form-control"
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            required
+          />
+          <label for="image"><b>Product Image</b></label>
+        </div>
+        <button type="submit" class="btn btn-warning">Submit</button>
+      </form>
     </main>
     <footer></footer>
-</body>
+  </body>
 </html>

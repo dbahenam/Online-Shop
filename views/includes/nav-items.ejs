@@ -1,13 +1,13 @@
 <ul class="nav-links">
   <% if(!locals.isAuth){ %>
   <li class="navbar-brand">
-    <a class="app-text" href="/cart/cart">Cart</a>
+    <a href="/cart/cart">Cart</a>
     <span id="cartTotalItems" class="badge bg-info"
       ><%=locals.cart.totalItems %></span
     >
   </li>
-  <li class="navbar-brand"><a class="app-text" href="/signup">Signup</a></li>
-  <li class="navbar-brand"><a class="app-text" href="/login">Login</a></li>
+  <li class="navbar-brand"><a href="/signup">Register</a></li>
+  <li class="navbar-brand"><a href="/login">Login</a></li>
   <% } %>
 
   <!-- <% if(!locals.isAdmin){ %> 
@@ -15,13 +15,13 @@
     <% } %> -->
 
   <% if (locals.isAdmin) { %>
-  <li><a class="app-text" href="/admin/products">Manage Products</a></li>
-  <li><a class="app-text" href="/admin/orders">Manage Orders</a></li>
+  <li class="navbar-brand"><a href="/admin/products">Manage Products</a></li>
+  <li class="navbar-brand"><a href="/admin/orders">Manage Orders</a></li>
   <% } %> <% if (locals.isAuth){ %>
-  <li>
+  <li class="navbar-brand">
     <form action="/logout" method="POST">
       <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
-      <button class="app__btn-alt">Logout</button>
+      <button>Logout</button>
     </form>
   </li>
   <% } %>

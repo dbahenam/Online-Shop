@@ -5,8 +5,12 @@
     <header><%- include("includes/header") %></header>
     <main>
       <section>
-        <% for (const product of products) { %> <%-
-        include("includes/product-item", {product: product}) %> <% } %>
+        <div class="m-4 row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+            <% for (const product of products) { %> <%-
+            include("includes/product-item", {product: product}) %> <% } %>
+          </div>
+        </div>
       </section>
     </main>
   </body>

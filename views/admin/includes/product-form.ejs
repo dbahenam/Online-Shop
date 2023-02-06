@@ -1,23 +1,82 @@
-<form class="app__form" action="<%=product.urlPath %>?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
-    <div>
-        <label for="name">Product Name</label>
-        <input type="text" id="name" name="name" value="<%= product.name %>" required>
-    </div>
-    <div>
-        <label for="price">Price</label>
-        <input type="number" id="price" name="price" value="<%= product.price %>" required>
-    </div>
-    <div>
-        <label for="summary">Summary</label>
-        <input type="text" id="summary" name="summary" value="<%= product.summary %>" required>
-    </div>
-    <div>
-        <label for="description">Product Description</label>
-        <textarea id="description" name="description" rows="10" required><%=product.description%></textarea>
-    </div>
-    <div>
-        <label for="image">Product Image</label>
-        <input type="file" id="image" name="image" accept="image/*" <% if(imageRequired) { %> required <%}%>>
-    </div>
-    <button class="app__btn">Submit</button>
+<h1 class="text-center m-4">Edit Item</h1>
+<form
+  class="product-form my-4"
+  action="/admin/add-product?_csrf=<%= locals.csrfToken %>"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <div class="form-group my-2">
+    <input
+      class="form-control"
+      type="text"
+      id="name"
+      name="name"
+      <input
+      type="text"
+      id="name"
+      name="name"
+      value="<%= product.name %>"
+      required
+    />
+
+    <label for="productname"><b>Product Name</b></label>
+  </div>
+  <div class="form-group my-2">
+    <input
+      class="form-control"
+      type="number"
+      id="price"
+      name="price"
+      <input
+      type="text"
+      id="name"
+      name="name"
+      value="<%= product.price %>"
+      required
+    />
+
+    <label for="description"><b>Price</b></label>
+  </div>
+
+  <div class="form-group my-2">
+    <input
+      class="form-control"
+      type="text"
+      id="summary"
+      name="summary"
+      <input
+      type="text"
+      id="summary"
+      name="summary"
+      value="<%= product.summary %>"
+      required
+    />
+
+    <label for="summary"><b>Summary</b></label>
+  </div>
+  <div class="form-group my-2">
+    <textarea
+      class="form-control"
+      id="description"
+      name="description"
+      rows="10"
+      required
+    >
+<%=product.description%> </textarea
+    >
+
+    <label for="description"><b>Product Description</b></label>
+  </div>
+  <div class="form-group my-3">
+    <input
+      class="form-control"
+      type="file"
+      id="image"
+      name="image"
+      accept="image/*"
+    />
+    <label for="image"><b>Product Image</b></label>
+  </div>
+  <a class="btn btn-danger" href="/admin/products">Cancel</a>
+  <button type="submit" class="btn btn-warning">Submit</button>
 </form>

@@ -17,7 +17,7 @@ async function signup(req, res, next) {
     confirmEmail: req.body['confirm-email'],
     password: req.body.password,
   };
-
+  console.log(userInput);
   if (
     !authVerification.validInput(
       userInput.email,

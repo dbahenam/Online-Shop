@@ -1,12 +1,24 @@
-<article class="product-item">
-  <h2><%= product.name %></h2>
-  <img src="<%= product.imageUrl %>" alt="<%= product.name %>" />
+<div class="card h-100 p-3">
+  <h4 class="card-title text-center"><%= product.name %></h4>
+  <img
+    src="<%= product.imageUrl %>"
+    class="card-img-top"
+    alt="<%= product.name %>"
+  />
+  <div class="px-0 card-body d-flex align-items-center justify-content-evenly">
+    <a
+      style="color: black"
+      class="my-2 btn btn-warning"
+      role="button"
+      href="/admin/products/<%=product.id%>"
+      >View & Edit</a
+    >
 
-  <a class="app__btn" href="/admin/products/<%=product.id%>">View & Edit</a>
-  <form
-    method="POST"
-    action="/admin/delete/<%=product.id%>?_csrf=<%= locals.csrfToken %>"
-  >
-    <button class="app__btn">Delete</button>
-  </form>
-</article>
+    <form
+      method="POST"
+      action="/admin/delete/<%=product.id%>?_csrf=<%= locals.csrfToken %>"
+    >
+      <button class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+</div>

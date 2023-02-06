@@ -9,7 +9,7 @@ class Cart {
     const cartItem = {
       product: product,
       quantity: quantity,
-      totalPrice: product.price,
+      totalPrice: product.price * quantity,
     };
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].product.id === product.id) {
