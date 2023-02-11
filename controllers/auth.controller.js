@@ -16,15 +16,12 @@ async function signup(req, res, next) {
     email: req.body.email,
     confirmEmail: req.body['confirm-email'],
     password: req.body.password,
+    fullName: req.body.fullname,
+    street: req.body.street,
+    postalCode: req.body.postalcode,
+    city: req.body.city,
   };
-  console.log(userInput);
-  if (
-    !authVerification.validInput(
-      userInput.email,
-      userInput.confirmEmail,
-      userInput.password
-    )
-  ) {
+  if (!authVerification.validInput(userInput)) {
     console.log('Error, something wrong with authenticating signup');
     sessionData.flashData(req, userInput, function () {
       res.redirect('signup');
@@ -41,18 +38,17 @@ async function signup(req, res, next) {
   }
 
   try {
-    await User.save(userInput.email, userInput.password);
+    await User.save(userInput);
   } catch (error) {
     next(error);
     return;
   }
-
   res.redirect('/login');
 }
 
 async function login(req, res, next) {
   const userInput = req.body;
-  const existingUser = new User(userInput.email);
+  const existingUser = new User(userInput);
   let user;
   try {
     user = await User.getUserByEmail(userInput.email);
@@ -78,11 +74,17 @@ async function login(req, res, next) {
   req.session.uid = user._id.toString();
   req.session.isAdmin = user.isAdmin;
   req.session.save(function () {
-    res.redirect('/products');
+    if (req.session.cartRedirect) {
+      req.session.cartRedirect = null;
+      res.redirect('/cart/cart');
+    } else {
+      res.redirect('/products');
+    }
   });
 }
 
 function logout(req, res) {
+  res.locals.isAuth = false;
   req.session.uid = null;
   res.redirect('/');
 }

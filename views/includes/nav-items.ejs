@@ -1,11 +1,11 @@
 <ul class="nav-links">
-  <% if(!locals.isAuth){ %>
   <li class="navbar-brand">
     <a href="/cart/cart">Cart</a>
-    <span id="cartTotalItems" class="badge bg-info"
+    <span id="cartTotalItems" class="badge bg-warning" style="color: black"
       ><%=locals.cart.totalItems %></span
     >
   </li>
+  <% if(!locals.isAuth){ %>
   <li class="navbar-brand"><a href="/signup">Register</a></li>
   <li class="navbar-brand"><a href="/login">Login</a></li>
   <% } %>
@@ -21,7 +21,11 @@
   <li class="navbar-brand">
     <form action="/logout" method="POST">
       <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
-      <button>Logout</button>
+      <button
+        style="color: white; background-color: transparent; border: transparent"
+      >
+        Logout
+      </button>
     </form>
   </li>
   <% } %>
