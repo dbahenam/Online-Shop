@@ -15,8 +15,26 @@ async function addOrder(req, res, next) {
   res.redirect('/orders');
 }
 
-function getOrders(req, res, next) {
-  res.render('customer/all-orders');
+async function getOrders(req, res, next) {
+  let orders = [];
+  try {
+    orders = await Order.findByUserID(res.locals.uid);
+  } catch (error) {
+    return next(error);
+  }
+  let orderData = [];
+  for (let i = 0; i < orders.length; i++) {
+    const productData = orders[i].productData;
+    orderData[i] = {
+      items: productData.items,
+      quantity: productData.totalItems,
+      totalPrice: productData.totalPrice,
+      date: orders[i].date.toISOString().substring(0, 10),
+      status: orders[i].status,
+    };
+  }
+  // const userData = admin only
+  res.render('customer/all-orders', { orders: orderData });
 }
 
 module.exports = {

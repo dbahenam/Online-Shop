@@ -1,4 +1,6 @@
 const db = require('../database/database');
+const mongodb = require('mongodb');
+
 class Order {
   constructor(cart, userData, status = 'pending', date, orderID) {
     this.productData = cart;
@@ -14,6 +16,16 @@ class Order {
       });
     }
     this.id = orderID;
+  }
+
+  static async findByUserID(uid) {
+    const userID = new mongodb.ObjectId(uid);
+    const orders = await db
+      .getDB()
+      .collection('orders')
+      .find({ 'userData._id': userID })
+      .toArray();
+    return orders;
   }
 
   async save() {

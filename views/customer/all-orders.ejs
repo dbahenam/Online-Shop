@@ -4,11 +4,45 @@
   <body>
     <header><%- include("../includes/header") %></header>
     <main>
-      <section>
-        <div class="m-4 row row-cols-1 row-cols-md-4 g-4">
-          <h1>All your Orders</h1>
+      <div class="container">
+        <h1 class="text-center m-4">All your orders</h1>
+        <% if (orders.length === 0) { %>
+        <p class="fs-4 text-danger text-center">
+          You don't have any orders. Place an order and you can view it's status
+          here.
+        </p>
+        <p class="text-center">
+          <a class="btn btn-warning" href="/">Continue Shopping</a>
+        </p>
+        <% } else { %> <% for (let order of orders) { %>
+        <div class="card w-75 bg-light my-1 mx-auto border border-dark">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <h5 class="card-title text-black fw-bold">
+                  $<%= order.totalPrice %>
+                </h5>
+              </div>
+              <h5 class="text-uppercase text-warning"><%= order.status %></h5>
+            </div>
+            <div class="text text-secondary mb-1">February 12th, 2023</div>
+            <% for(let item of order.items){ %> <% console.log(item) %>
+            <p class="card-text">
+              <span class="text-uppercase fw-light fst-italic"
+                ><%= item.product.name %> ($<%= item.product.price %>)</span
+              >
+              <!-- badge for quantity -->
+              <span class="badge text-dark bg-warning"
+                ><%= item.quantity%></span
+              >
+            </p>
+            <%}%>
+            <a href="#" class="btn btn-danger">Cancel Order</a>
+          </div>
         </div>
-      </section>
+
+        <% } %> <% } %>
+      </div>
     </main>
   </body>
 </html>
