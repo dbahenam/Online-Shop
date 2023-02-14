@@ -3,3 +3,4 @@ package-lock.json
 product_data/
 .DS_Store
 public/font_awesome/
+public/styles/all.css
