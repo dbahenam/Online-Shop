@@ -5,7 +5,18 @@
     class="card-img-top"
     alt="<%= product.name %>"
   />
-  <div class="px-0 card-body d-flex align-items-center justify-content-evenly">
+  <div class="px-0 card-body">
+    <b>$<%= product.price %></b>
+    <p class="card-text"><%= product.description %></p>
+    <% if(!locals.isAdmin){ %>
+    <a
+      style="color: black"
+      class="btn btn-warning"
+      role="button"
+      href="/products/<%= product.id %>"
+      >View Details</a
+    >
+    <%} else { %>
     <a
       style="color: black"
       class="my-2 btn btn-warning"
@@ -13,12 +24,12 @@
       href="/admin/products/<%=product.id%>"
       >View & Edit</a
     >
-
     <form
       method="POST"
       action="/admin/delete/<%=product.id%>?_csrf=<%= locals.csrfToken %>"
     >
       <button class="btn btn-danger">Delete</button>
     </form>
+    <%} %>
   </div>
 </div>

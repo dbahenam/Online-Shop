@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("../includes/head") %>
-<link rel="stylesheet" href="/styles/forms.css">
-<body>
-    <%- include("../includes/header")%>
+  <%- include("../shared/includes/head") %>
+  <link rel="stylesheet" href="/styles/forms.css" />
+  <body>
+    <%- include("../shared/includes/header")%>
     <main>
-        <%- include("includes/product-form", {product: product, imageRequired: true}) %>
+      <%- include("includes/product-form", {product: product, imageRequired:
+      true}) %>
     </main>
-    
-</body>
+  </body>
 </html>

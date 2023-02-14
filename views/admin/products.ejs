@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("../includes/head") %>
+  <%- include("../shared/includes/head") %>
   <link rel="stylesheet" href="/styles/forms.css" />
 
   <body>
-    <header><%- include("../includes/header") %></header>
+    <header><%- include("../shared/includes/header") %></header>
     <main>
       <section class="admin_nav">
         <h1 class="text-center m-4">Product Administration</h1>
@@ -19,7 +19,8 @@
         <div class="m-4 row row-cols-1 row-cols-md-4 g-4">
           <div class="col">
             <% for (const product of products) { %> <%-
-            include("includes/product-item", {product: product}) %> <% } %>
+            include("../shared/includes/product-item", {product: product}) %> <%
+            } %>
           </div>
         </div>
       </section>

@@ -18,14 +18,27 @@ class Order {
     this.id = orderID;
   }
 
+  static mapToOrderObjects(ordersDocument) {
+    return ordersDocument.map(function (orderDoc) {
+      return new Order(
+        orderDoc.productData,
+        orderDoc.userData,
+        orderDoc.status,
+        orderDoc.date,
+        orderDoc._id
+      );
+    });
+  }
+
   static async findByUserID(uid) {
     const userID = new mongodb.ObjectId(uid);
     const orders = await db
       .getDB()
       .collection('orders')
       .find({ 'userData._id': userID })
+      .sort({ _id: -1 })
       .toArray();
-    return orders;
+    return this.mapToOrderObjects(orders);
   }
 
   async save() {

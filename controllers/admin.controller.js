@@ -16,7 +16,7 @@ async function getProducts(req, res) {
 
 function addProduct(req, res) {
   if (!res.locals.isAdmin) {
-    res.render('errors/401');
+    res.render('shared/errors/401');
     return;
   }
   res.render('admin/add-product');

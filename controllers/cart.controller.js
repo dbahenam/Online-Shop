@@ -42,7 +42,7 @@ function getCart(req, res) {
   products = products.map(function (productDocument) {
     return new Product(productDocument);
   });
-  res.render('customer/cart', {
+  res.render('customer/cart/cart', {
     products: products,
     items: items,
     cartInfo: cartInfo,

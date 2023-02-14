@@ -4,11 +4,11 @@ const sessionData = require('../utils/validate-session');
 
 function getSignup(req, res) {
   let inputData = sessionData.getData(req);
-  res.render('customer/signup', { inputData: inputData });
+  res.render('customer/authorize/signup', { inputData: inputData });
 }
 function getLogin(req, res) {
   let inputData = sessionData.getData(req);
-  res.render('customer/login', { inputData: inputData });
+  res.render('customer/authorize/login', { inputData: inputData });
 }
 
 async function signup(req, res, next) {
@@ -76,7 +76,7 @@ async function login(req, res, next) {
   req.session.save(function () {
     if (req.session.cartRedirect) {
       req.session.cartRedirect = null;
-      res.redirect('/cart/cart');
+      res.redirect('/cart');
     } else {
       res.redirect('/products');
     }
