@@ -2,12 +2,12 @@ const Product = require('../models/product.model');
 
 async function getProducts(req, res) {
   if (!res.locals.isAdmin) {
-    res.render('errors/401');
+    res.render('shared/errors/401');
     return;
   }
   try {
     const products = await Product.getAll();
-    res.render('admin/products', { products: products });
+    res.render('admin/products/all-products', { products: products });
   } catch (error) {
     next(error);
     return;
@@ -19,7 +19,7 @@ function addProduct(req, res) {
     res.render('shared/errors/401');
     return;
   }
-  res.render('admin/add-product');
+  res.render('admin/products/add-product');
 }
 
 async function newProduct(req, res, next) {
@@ -33,14 +33,14 @@ async function newProduct(req, res, next) {
     next(error);
     return;
   }
-  res.redirect('/admin/products');
+  res.redirect('/admin/products/all-products');
 }
 
 async function getProduct(req, res, next) {
   let product;
   try {
     product = await Product.getByID(req.params.id);
-    res.render('admin/product-detail', { product: product });
+    res.render('admin/products/product-detail', { product: product });
   } catch (error) {
     next(error);
   }
@@ -60,12 +60,12 @@ async function updateProduct(req, res, next) {
     next(error);
     return;
   }
-  res.redirect('/admin/products');
+  res.redirect('/admin/products/all-products');
 }
 
 async function deleteProduct(req, res, next) {
   await Product.deleteByID(req.params.id);
-  res.redirect('/admin/products');
+  res.redirect('/admin/products/all-products');
 }
 
 module.exports = {

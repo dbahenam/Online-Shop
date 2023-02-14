@@ -11,8 +11,12 @@
   <li class="navbar-brand"><a href="/signup">Register</a></li>
   <li class="navbar-brand"><a href="/login">Login</a></li>
   <% } %> <% if (locals.isAdmin) { %>
-  <li class="navbar-brand"><a href="/admin/products">Manage Products</a></li>
-  <li class="navbar-brand"><a href="/admin/orders">Manage Orders</a></li>
+  <li class="navbar-brand">
+    <a class="navbar-brand" href="/admin/products">Manage Products</a>
+  </li>
+  <li class="navbar-brand">
+    <a class="navbar-brand" href="/admin/orders">Manage Orders</a>
+  </li>
   <% } %> <% if (locals.isAuth){ %>
   <li class="navbar-brand">
     <form action="/logout" method="POST">

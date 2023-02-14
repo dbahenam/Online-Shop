@@ -3,6 +3,7 @@ const path = require('path');
 const db = require('./database/database');
 const csrf = require('csurf');
 const expressSession = require('express-session');
+const favicon = require('serve-favicon');
 
 const routeProtection = require('./middlewares/routeProtection');
 const errorHandler = require('./middlewares/error-handler');
@@ -36,6 +37,7 @@ app.use(cartMiddleware);
 app.use(addCsrfToken);
 app.use(checkAuthStatus);
 
+app.use(favicon(path.join(__dirname, 'public', 'logo.png')));
 app.use(baseRoutes);
 app.use(prodRoutes);
 app.use(authRoutes);
@@ -44,11 +46,12 @@ app.use(routeProtection);
 app.use('/orders', ordersRoutes);
 app.use('/admin', adminRoutes);
 
-// app.use(function (req, res, next) {
-//   let error = new Error('Not Found');
-//   error.code = 404;
-//   next(error);
-// });
+/* page not found */
+app.use(function (req, res, next) {
+  let error = new Error('Not Found');
+  error.code = 404;
+  next(error);
+});
 
 app.use(errorHandler);
 

@@ -1,0 +1,25 @@
+<% for (let order of orders) { %>
+<div class="card w-75 bg-light my-2 mx-auto border border-dark">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex">
+        <h5 class="card-title text-black fw-bold">
+          $<%= order.productData.totalPrice %>
+        </h5>
+      </div>
+      <h5 class="text-uppercase text-warning"><%= order.status %></h5>
+    </div>
+    <% for(let item of order.productData.items){ %>
+    <div class="text text-secondary mb-1"><%= order.formattedDate %></div>
+    <p class="card-text">
+      <span class="text-uppercase fw-light fst-italic"
+        ><%= item.product.name %> ($<%= item.product.price %>)</span
+      >
+      <!-- badge for quantity -->
+      <span class="badge text-dark bg-warning"><%= item.quantity%></span>
+    </p>
+    <%}%>
+    <a href="#" class="btn btn-danger">Cancel Order</a>
+  </div>
+</div>
+<% } %>

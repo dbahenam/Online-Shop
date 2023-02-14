@@ -23,7 +23,14 @@ class Product {
   }
 
   static async getByID(productID) {
-    const objectID = new mongodb.ObjectId(productID);
+    let objectID;
+    try {
+      objectID = new mongodb.ObjectId(productID); // productID not valid
+    } catch (error) {
+      error.code = 404;
+      throw error;
+    }
+
     let theProduct;
     try {
       theProduct = await db

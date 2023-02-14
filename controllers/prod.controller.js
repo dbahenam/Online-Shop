@@ -12,9 +12,14 @@ async function getProducts(req, res, next) {
 }
 
 async function getDetails(req, res, next) {
-  const productCollection = await Product.getByID(req.params.id);
-  const product = new Product(productCollection);
-  res.render('customer/products/details', { product: product });
+  let productCollection;
+  try {
+    productCollection = await Product.getByID(req.params.id);
+    const product = new Product(productCollection);
+    return res.render('customer/products/details', { product: product });
+  } catch (error) {
+    return next(error);
+  }
 }
 
 module.exports = {

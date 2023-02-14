@@ -19,11 +19,11 @@ async function getOrders(req, res, next) {
   let orders;
   try {
     orders = await Order.findByUserID(res.locals.uid);
-    console.log(orders);
     res.render('customer/orders/all-orders', { orders: orders });
   } catch (error) {
     return next(error);
   }
+
   // let orderData = [];
   // for (let i = 0; i < orders.length; i++) {
   //   const productData = orders[i].productData;
