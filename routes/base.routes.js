@@ -7,12 +7,12 @@ router.get('/', function (req, res) {
 });
 
 // unauthorized
-router.get('/errors/401', function (req, res) {
+router.get('shared/errors/401', function (req, res) {
   res.render('errors/401');
 });
 
 // admin
-router.get('/errors/403', function (req, res) {
+router.get('shared/errors/403', function (req, res) {
   res.render('errors/403');
 });
 

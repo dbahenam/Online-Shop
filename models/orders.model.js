@@ -30,6 +30,11 @@ class Order {
     });
   }
 
+  static async getAll() {
+    const orders = await db.getDB().collection('orders').find().toArray();
+    return this.mapToOrderObjects(orders);
+  }
+
   static async findByUserID(uid) {
     const userID = new mongodb.ObjectId(uid);
     const orders = await db
@@ -41,9 +46,30 @@ class Order {
     return this.mapToOrderObjects(orders);
   }
 
+  static async findByOrderID(oid) {
+    const orderID = new mongodb.ObjectId(oid);
+    const orderDoc = await db
+      .getDB()
+      .collection('orders')
+      .findOne({ _id: orderID });
+    const order = new Order(
+      orderDoc.productData,
+      orderDoc.userData,
+      orderDoc.status,
+      orderDoc.date,
+      orderDoc._id
+    );
+
+    return order;
+  }
+
   async save() {
     if (this.id) {
-      //updating
+      const orderID = new mongodb.ObjectId(this.id);
+      await db
+        .getDB()
+        .collection('orders')
+        .updateOne({ _id: orderID }, { $set: { status: this.status } });
     } else {
       // new order
       const orderDocument = {

@@ -19,4 +19,8 @@ router.post(
 
 router.post('/delete/:id', adminController.deleteProduct);
 
+router.get('/orders', adminController.getOrders);
+
+router.patch('/orders', adminController.patchOrders);
+
 module.exports = router;

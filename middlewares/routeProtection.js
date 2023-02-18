@@ -1,6 +1,6 @@
 function routeProtection(req, res, next) {
   if (req.path.startsWith('/admin') && !res.locals.isAdmin) {
-    res.redirect('/errors/403');
+    return res.render('shared/errors/403');
   }
   if (req.path.startsWith('/orders') && !res.locals.isAuth) {
     req.session.cartRedirect = true;

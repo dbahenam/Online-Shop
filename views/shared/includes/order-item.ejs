@@ -11,15 +11,45 @@
     </div>
     <% for(let item of order.productData.items){ %>
     <div class="text text-secondary mb-1"><%= order.formattedDate %></div>
+    <% if(locals.isAdmin){ %>
+    <p class="card-text text-uppercase fw-secondary m-0">
+      <%= order.userData.fullName %>
+    </p>
+    <p class="card-text text-uppercase fw-light my-1">
+      <span
+        ><%=order.userData.address.street%>
+        <%=order.userData.address.postalCode%>
+        <%=order.userData.address.city%></span
+      >
+    </p>
+    <%}%>
     <p class="card-text">
-      <span class="text-uppercase fw-light fst-italic"
+      <span class="text-uppercase fw-bold fst-italic"
         ><%= item.product.name %> ($<%= item.product.price %>)</span
       >
       <!-- badge for quantity -->
       <span class="badge text-dark bg-warning"><%= item.quantity%></span>
     </p>
-    <%}%>
+    <%}%> <% if(!locals.isAdmin) {%>
     <a href="#" class="btn btn-danger">Cancel Order</a>
+    <%} else { %>
+    <form class="order-forms">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
+      <input type="hidden" name="order-id" value="<%= order.id %>" />
+      <select
+        class="btn btn-block mb-4"
+        style="background-color: #232f3e; color: white"
+        name="order-status"
+      >
+        <option class="text-uppercase" value="completed"<% if(order.status === 'completed') {%> selected <%}%>>Completed</option>
+        <option class="text-uppercase" value="pending" <% if(order.status === 'pending') {%> selected <%}%> >Pending</option>
+        <option class="text-uppercase" value="cancel" <% if(order.status === 'cancel') {%> selected <%}%>>Cancel</option>
+      </select>
+      <button type="submit" class="btn btn-warning btn-block mb-4">
+        Update
+      </button>
+    </form>
+    <%}%>
   </div>
 </div>
 <% } %>

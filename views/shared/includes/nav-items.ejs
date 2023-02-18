@@ -6,7 +6,7 @@
       ><%=locals.cart.totalItems %></span
     >
   </li>
-  <li class="navbar-brand"><a href="/orders">Orders</a></li>
+
   <% } %> <% if(!locals.isAuth){ %>
   <li class="navbar-brand"><a href="/signup">Register</a></li>
   <li class="navbar-brand"><a href="/login">Login</a></li>
@@ -17,7 +17,9 @@
   <li class="navbar-brand">
     <a class="navbar-brand" href="/admin/orders">Manage Orders</a>
   </li>
-  <% } %> <% if (locals.isAuth){ %>
+  <% } %> <% if (locals.isAuth && !locals.isAdmin) { %>
+  <li class="navbar-brand"><a href="/orders">Orders</a></li>
+  <%}%> <% if (locals.isAuth){ %>
   <li class="navbar-brand">
     <form action="/logout" method="POST">
       <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
